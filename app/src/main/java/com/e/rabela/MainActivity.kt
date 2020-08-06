@@ -41,12 +41,24 @@ class MainActivity : AppCompatActivity() {
                     when (item.itemId){
                         R.id.navigation_home ->{
                             Log.d("Respon","Home")
+                            menuItem = menu.getItem(0)
+                            menuItem.isChecked = true
+                            fm.beginTransaction().hide(active).show(fragmentHome).commit()
+                            active = fragmentHome
                         }
                         R.id.navigation_keranjang ->{
                             Log.d("Respon","Keranjang")
+                            menuItem = menu.getItem(1)
+                            menuItem.isChecked = true
+                            fm.beginTransaction().hide(active).show(fragmentKerangjang).commit()
+                            active = fragmentKerangjang
                         }
                         R.id.navigation_akun ->{
                             Log.d("Respon","Akun")
+                            menuItem = menu.getItem(2)
+                            menuItem.isChecked = true
+                            fm.beginTransaction().hide(active).show(fragmentAkun).commit()
+                            active = fragmentAkun
                         }
                     }
 
