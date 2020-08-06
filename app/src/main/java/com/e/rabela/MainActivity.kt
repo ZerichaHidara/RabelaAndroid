@@ -27,7 +27,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setBottomNavbar()
 
+    }
+    fun setBottomNavbar(){
         fm.beginTransaction().add(R.id.container, fragmentHome).show(fragmentHome).commit()
         fm.beginTransaction().add(R.id.container, fragmentAkun).hide(fragmentAkun).commit()
         fm.beginTransaction().add(R.id.container, fragmentKerangjang).hide(fragmentKerangjang).commit()
@@ -37,32 +40,26 @@ class MainActivity : AppCompatActivity() {
         menuItem = menu.getItem(0)
         menuItem.isChecked = true
 
-            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-                    when (item.itemId){
-                        R.id.navigation_home ->{
-                            Log.d("Respon","Home")
-                            menuItem = menu.getItem(0)
-                            menuItem.isChecked = true
-                            fm.beginTransaction().hide(active).show(fragmentHome).commit()
-                            active = fragmentHome
-                        }
-                        R.id.navigation_keranjang ->{
-                            Log.d("Respon","Keranjang")
-                            menuItem = menu.getItem(1)
-                            menuItem.isChecked = true
-                            fm.beginTransaction().hide(active).show(fragmentKerangjang).commit()
-                            active = fragmentKerangjang
-                        }
-                        R.id.navigation_akun ->{
-                            Log.d("Respon","Akun")
-                            menuItem = menu.getItem(2)
-                            menuItem.isChecked = true
-                            fm.beginTransaction().hide(active).show(fragmentAkun).commit()
-                            active = fragmentAkun
-                        }
-                    }
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId){
+                R.id.navigation_home ->{
+                    callFragment(0,fragmentHome)
+                }
+                R.id.navigation_keranjang ->{
+                    callFragment(1,fragmentKerangjang)
+                }
+                R.id.navigation_akun ->{
+                    callFragment(2,fragmentAkun)
+                }
+            }
 
-                false  }
+            false  }
+    }
 
+    fun callFragment(int: Int, fragment: Fragment){
+        menuItem = menu.getItem(int)
+        menuItem.isChecked = true
+        fm.beginTransaction().hide(active).show(fragment).commit()
+        active = fragment
     }
 }
