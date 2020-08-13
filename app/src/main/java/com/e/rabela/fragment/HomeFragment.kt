@@ -22,6 +22,7 @@ class HomeFragment : Fragment() {
 
     lateinit var slider: ViewPager
     lateinit var rvproduk: RecyclerView
+    lateinit var rvprodukTerlaris: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
 
         slider = view.findViewById(R.id.slider)
         rvproduk = view.findViewById(R.id.rv_produk)
+        rvprodukTerlaris = view.findViewById(R.id.rv_produk_terlaris)
 
         val array = ArrayList<Int>()
         array.add(R.drawable.slider1)
@@ -43,12 +45,18 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
 
+        val layoutManager2 = LinearLayoutManager(activity)
+        layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
+
         rvproduk.adapter = AdapterProduk(arrProduk)
         rvproduk.layoutManager =layoutManager
 
+        rvprodukTerlaris.adapter = AdapterProduk(arrProdukTerlaris)
+        rvprodukTerlaris.layoutManager =layoutManager2
+
         return view
     }
-
+    //Produk Terbaru
     val arrProduk: ArrayList<Produk>get(){
         val arr = ArrayList<Produk>()
         val p1 = Produk()
@@ -66,9 +74,46 @@ class HomeFragment : Fragment() {
         p3.harga = "Rp.15.000"
         p3.gambar = R.drawable.p3
 
+        val p7 = Produk()
+        p7.nama = "Parfum aroma Kopi"
+        p7.harga = "Rp.15.000"
+        p7.gambar = R.drawable.p7
+
+        val p8 = Produk()
+        p8.nama = "Parfum aroma Kopi"
+        p8.harga = "Rp.15.000"
+        p8.gambar = R.drawable.p8
+
         arr.add(p1)
         arr.add(p2)
         arr.add(p3)
+        arr.add(p7)
+        arr.add(p8)
+
+        return arr
+    }
+
+    //Produk Terlaris
+    val arrProdukTerlaris: ArrayList<Produk>get(){
+        val arr = ArrayList<Produk>()
+        val p4 = Produk()
+        p4.nama = "Parfum aroma Kambojo"
+        p4.harga = "Rp.15.000"
+        p4.gambar = R.drawable.p4
+
+        val p5 = Produk()
+        p5.nama = "Parfum aroma Lafender"
+        p5.harga = "Rp.15.000"
+        p5.gambar = R.drawable.p5
+
+        val p6 = Produk()
+        p6.nama = "Parfum aroma Pandan"
+        p6.harga = "Rp.15.000"
+        p6.gambar = R.drawable.p6
+
+        arr.add(p4)
+        arr.add(p5)
+        arr.add(p6)
 
         return arr
     }
